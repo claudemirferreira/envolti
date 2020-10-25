@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.envolti.dao.BaseDao;
 import br.com.envolti.model.BaseModel;
+import br.com.envolti.model.Pessoa;
 
 @CrossOrigin(origins = "*")
 public class GenericRestController<T extends BaseModel> {
@@ -42,4 +43,5 @@ public class GenericRestController<T extends BaseModel> {
 	public T get(@PathVariable(value = "id") long id) {
 		return dao.getOne(id);
 	}
+	
 }

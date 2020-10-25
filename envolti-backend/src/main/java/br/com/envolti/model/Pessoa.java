@@ -1,6 +1,6 @@
 package br.com.envolti.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "pessoa")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // json config
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Pessoa extends BaseModel {
 
 	private static final long serialVersionUID = -8746574861978321194L;
@@ -34,10 +34,10 @@ public class Pessoa extends BaseModel {
 	private String cpf;
 
 	@Column(nullable = false)
-	private LocalDate dataCadastro;
+	private Date dataCadastro;
 
 	@Column()
-	private LocalDate dataAtualizacao;
+	private Date dataAtualizacao;
 
 	public String getNome() {
 		return nome;
@@ -87,19 +87,19 @@ public class Pessoa extends BaseModel {
 		this.cpf = cpf;
 	}
 
-	public LocalDate getDataCadastro() {
+	public Date getDataCadastro() {
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(LocalDate dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public LocalDate getDataAtualizacao() {
+	public Date getDataAtualizacao() {
 		return dataAtualizacao;
 	}
 
-	public void setDataAtualizacao(LocalDate dataAtualizacao) {
+	public void setDataAtualizacao(Date dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
