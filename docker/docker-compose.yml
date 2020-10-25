@@ -1,0 +1,44 @@
+version: "3.5"
+
+networks:
+  envolti-network:
+    driver: bridge
+
+services:
+  mysqlsrv:
+    image: mysql
+    restart: always
+    container_name: mysql_envolti
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: envolvti
+    volumes:
+        - /var/lib/mysql:/var/lib/mysql
+    ports:
+        - 3306:3306
+    environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=root12!@
+    networks:
+        - envolti-network
+
+  app-back:
+    build: ../envolti-backend/.
+    ports:
+      - "3000:3000"
+    command: npm start
+    container_name: envolti-backend
+    networks:
+        - envolti-network
+
+  app-front:
+    networks:
+        - envolti-network
+    build:
+      context: ../envolti-frontend
+      dockerfile: Dockerfile
+    ports:
+    - "80:80"
+    container_name: envolti-frontend
+    volumes:
+      - ./envolti-frontend:/usr/src/app/app-ui
+      - /usr/src/app/app-ui/node_modules                      
