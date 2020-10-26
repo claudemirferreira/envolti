@@ -14,7 +14,7 @@ public class BaseModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_perfil")
+	@Column(name = "id")
 	protected Integer id;
 
 	public Integer getId() {
