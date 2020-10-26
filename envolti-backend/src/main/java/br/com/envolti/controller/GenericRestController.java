@@ -3,7 +3,9 @@ package br.com.envolti.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.envolti.dao.BaseDao;
 import br.com.envolti.model.BaseModel;
+import br.com.envolti.response.Response;
 
 @CrossOrigin(origins = "*")
 public class GenericRestController<T extends BaseModel> {
@@ -19,8 +22,11 @@ public class GenericRestController<T extends BaseModel> {
 	private BaseDao<T> dao;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<T> list() {
-		return dao.findAll();
+	public ResponseEntity<Response<List<T>>> list() {
+		Response<List<T>> response = new Response<List<T>>();
+		List<T> list = dao.findAll();
+		response.setContent(list);
+		return ResponseEntity.ok(response);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

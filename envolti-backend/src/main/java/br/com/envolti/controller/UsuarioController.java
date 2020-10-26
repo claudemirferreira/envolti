@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.envolti.model.Usuario;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/envolti-backend/usuario")
 public class UsuarioController extends GenericRestController<Usuario> {
 
 }
